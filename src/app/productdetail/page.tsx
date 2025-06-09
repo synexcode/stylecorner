@@ -20,7 +20,7 @@ const Detailpage = () => {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="container px-5 py-24 mx-auto">
+    <div className="container px-5 py-4 mx-auto">
       <div className="lg:w-4/5 mx-auto flex flex-wrap">
         <div className="lg:w-1/2 w-full">
           <Image

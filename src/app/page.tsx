@@ -8,8 +8,7 @@ import ProductCarousel from '@/components/Products'
 const page = () => {
   return (
     <div className='bg-white'>
-     <Banner />
-      <Navbar />
+     
       <Hero />
       <Services/>
       <ProductCarousel/>
