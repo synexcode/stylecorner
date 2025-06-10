@@ -1,6 +1,7 @@
 "use client";
 import Image from 'next/image';
 import React from 'react';
+import Link from 'next/link';
 import logo from "../../public/logo.png";
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -20,7 +21,7 @@ const Navbar = () => {
 
       {/* Center Nav */}
       <div className="hidden md:flex space-x-6 items-center text-[14px] font-medium">
-        {["HOME", "SHOP", "PRODUCTS", "PAGES", "BLOGS"].map((item, idx) => (
+        {["HOME", "SHOP", "PRODUCTS"].map((item, idx) => (
           <React.Fragment key={idx}>
             <a href="#" className="text-gray-700 hover:text-[#008EAA] transition-colors">{item}</a>
             {idx < 4 && <IoIosArrowDown className="text-gray-400 text-xs" />}
@@ -30,16 +31,25 @@ const Navbar = () => {
 
       {/* Icons */}
       <div className="flex items-center space-x-4">
-        <button className="text-gray-700 hover:text-[#E52E71] transition-colors">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </button>
+        <Link href={"/wishlist"}>
+       <button className="text-gray-700 hover:text-[#E52E71] transition-colors">
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M4.318 6.318a4.5 4.5 0 010 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+    />
+  </svg>
+</button>
+</Link>
+        <Link href={"/cart"}>
         <button className="text-gray-700 hover:text-[#E52E71] transition-colors">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
         </button>
+        </Link>
       </div>
     </div>
   );
