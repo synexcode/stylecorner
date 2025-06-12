@@ -1,9 +1,9 @@
 "use client";
 import Image from 'next/image';
 import React from 'react';
-import Link from 'next/link';
 import logo from "../../public/logo.png";
 import { IoIosArrowDown } from "react-icons/io";
+import Link from 'next/link';
 
 const Navbar = () => {
   return (
@@ -21,12 +21,19 @@ const Navbar = () => {
 
       {/* Center Nav */}
       <div className="hidden md:flex space-x-6 items-center text-[14px] font-medium">
+
         {["HOME", "SHOP", "PRODUCTS"].map((item, idx) => (
           <React.Fragment key={idx}>
             <a href="#" className="text-gray-700 hover:text-[#008EAA] transition-colors">{item}</a>
             {idx < 4 && <IoIosArrowDown className="text-gray-400 text-xs" />}
           </React.Fragment>
         ))}
+
+        <Link href="/" className="text-gray-700 hover:text-[#008EAA] transition-colors">HOME</Link>
+       
+
+        <Link href="/shop" className="text-gray-700 hover:text-[#008EAA] transition-colors">SHOP</Link>
+
       </div>
 
       {/* Icons */}

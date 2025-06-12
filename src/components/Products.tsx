@@ -48,7 +48,7 @@ const products = [
 
 const ProductCarousel = () => {
   return (
-    <div className="bg-white px-4 py-10">
+    <div className="bg-white px-9 py-10">
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
