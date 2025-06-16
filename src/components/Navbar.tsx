@@ -5,17 +5,11 @@ import React from "react";
 import { IoSearch } from "react-icons/io5";
 import logo from "../../public/logo.png";
 import Link from "next/link";
-import { Menu } from "lucide-react";
 import { FaRegHeart } from "react-icons/fa";
 import { IoBagOutline } from "react-icons/io5";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-
 // ✅ Just use 'products' directly
 import products from "../../Data/data";
+import Responsivenav from "./Responsivenav";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -107,23 +101,8 @@ const Navbar = () => {
         </div>
 
         <div className="md:hidden">
-            <Sheet>
-              <SheetTrigger asChild>
-                <button>
-                  <Menu className="w-6 h-6 text-gray-700" />
-                </button>
-              </SheetTrigger>
-              <SheetContent side="left" className="w-[250px] sm:w-[300px]">
-                <div className="flex flex-col gap-4 mt-8">
-                  <Link href="/">HOME</Link>
-                  <Link href="/shop">SHOP</Link>
-                  <Link href="/products">PRODUCTS</Link>
-                  <Link href="/wishlist">WISHLIST</Link>
-                  <Link href="/cart">CART</Link>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
+          <Responsivenav/>
+        </div>
       </div>
     </div>
   );
