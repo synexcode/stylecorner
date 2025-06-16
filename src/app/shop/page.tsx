@@ -1,131 +1,94 @@
 "use client";
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "../../components/ui/button";
+import { IoIosCheckmarkCircle } from "react-icons/io";
+import AddToCartButton from "../../components/Addtocartbutton"; 
+import AddToWishlistButton from "../../components/Addtowishlishbutton";
 
-// Your brand theme colors
-const accentBlue = "#008EAA";
-const accentPink = "#E52E71";
+import products from "../../../Data/data";
+const Foryoucomp = () => {
 
-const products = [
-  {
-    id: 1,
-    image: "/product1.png",
-    label: "NEW IN",
-    title: "Oval Yellow Diamond Double Halo Engagement Ring",
-    price: "$2,499.00",
-    note: "3 sizes are available",
-  },
-  {
-    id: 2,
-    image: "/product2.png",
-    label: "30% OFF",
-    title: "Small Earrings In Gold with Diamond",
-    price: "$3,370.00",
-    oldPrice: "$3,899.00",
-    countdown: "1d : 3h : 40m : 16s",
-  },
-  {
-    id: 3,
-    image: "/product3.png",
-    label: "30% OFF",
-    title: "Sixteen Stone Narrow Earrings",
-    price: "$2,499.00",
-    oldPrice: "$2,899.00",
-    tags: ["30% OFF", "Selling fast"],
-  },
-  {
-    id: 4,
-    image: "/product4.png",
-    title: "Sparkling Moon & Star Stud Earrings",
-    price: "$2,499.00",
-    notify: true,
-  },
-  {
-    id: 5,
-    image: "/product1.png",
-    title: "Simple Gold Ring",
-    price: "$999.00",
-  },
-  {
-    id: 6,
-    image: "/product2.png",
-    title: "Minimalist Bracelet",
-    price: "$1,499.00",
-  },
-  // Add more if you want
-];
-
-const ShopPage = () => {
   return (
-    <div className="bg-white p-16">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.map((product, index) => (
-          <div
-            key={index}
-            className="bg-white border border-gray-200 p-4 rounded shadow-sm relative hover:shadow-md transition-shadow duration-300"
-          >
-            {product.label && (
-              <span
-                className="absolute top-2 left-2 text-white text-xs font-semibold px-2 py-1 rounded"
-                style={{ backgroundColor: accentPink }}
-              >
-                {product.label}
-              </span>
-            )}
-
-            <img
-              src={product.image}
-              alt={product.title}
-              className="w-full h-56 object-contain"
-            />
-
-            {product.note && (
-              <div className="text-center text-xs text-gray-500 mt-2">
-                {product.note}
-              </div>
-            )}
-
-            <div className="mt-3">
-              <h4 className="text-sm font-semibold text-gray-800">
-                {product.title}
-              </h4>
-              <div className="text-lg font-bold text-black">{product.price}</div>
-              {product.oldPrice && (
-                <div className="text-sm line-through text-gray-400">
-                  {product.oldPrice}
-                </div>
-              )}
-              {product.countdown && (
-                <div className="text-sm border border-gray-300 mt-2 px-3 py-1 text-center text-gray-700">
-                  {product.countdown}
-                </div>
-              )}
-              {product.tags && (
-                <div className="flex flex-wrap gap-1 mt-2 text-xs font-semibold text-white">
-                  {product.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-0.5 rounded"
-                      style={{ backgroundColor: accentBlue }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-              {product.notify && (
-                <button
-                  className="mt-4 w-full py-2 text-sm font-semibold text-white rounded"
-                  style={{ backgroundColor: accentBlue }}
-                >
-                  Notify Me When Available
-                </button>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+<div className="mb-20 mt-[50px] px-4 overflow-hidden">
+  {/* Heading */}
+  <div className="text-center mb-8">
+    <h2 className="text-3xl sm:text-4xl font-bold text-[#008EAA] font-[Pacifico]">
+      Our Products
+    </h2>
+    <div className="flex justify-center mt-4">
+      <div className="w-16 h-1 bg-[#E52E71] rounded-full" />
     </div>
+  </div>
+
+  {/* Cards Grid */}
+  <div className="text-gray-600">
+    <div className="flex flex-wrap justify-center gap-x-4 gap-y-8">
+      {products.map((item) => (
+       
+        <div
+          key={item.id}
+          className="w-full sm:w-[55%] lg:w-[23%] bg-white"
+        >
+         
+            <div className="block relative h-48 rounded overflow-hidden hover:scale-110 hover:duration-500">
+               <Link href={`/shop/${item.slug}`} key={item.id}>
+              <Image
+                src={item.img}
+                alt={item.title}
+                width={300}
+                height={230}
+                className="object-cover rounded"
+              />
+              </Link>
+            </div>
+         
+          <div className="flex justify-between">
+            <div className="mt-4">
+            <h1 className="text-[16px] font-semibold text-myverydarkpink">
+              {item.title}
+            </h1>
+            <h2 className="text-gray-900 title-font text-sm font-medium line-clamp-1">
+              {item.description}
+            </h2>
+            <p className="mt-1">Rs. {item.price}</p>
+          </div>
+          <div className="text-center mt-10 mr-20">
+          <AddToWishlistButton
+  product={{
+    id: item.id,
+    name: item.title,
+    price: item.price,
+    image: item.img
+  }}
+/>
+
+          </div>
+          </div>
+          <div className="flex gap-7 mt-4 px-6">
+              <AddToCartButton
+                 product={{
+    id: item.id,
+    name: item.title,
+    price: item.price,
+    image: item.img,
+    quantity: 1
+              }}
+              />
+            <Button className="group flex items-center gap-1 cursor-pointer text-styleWhite bg-stylePink hover:bg-styleBlue text-[14px] border-styleBlue duration-300">
+              <IoIosCheckmarkCircle className="text-xl group-hover:animate-bounce text-styleWhite" />
+              <Link href="/payment">Buy now</Link>
+            </Button>
+          </div>
+        </div>
+        
+      ))}
+    </div>
+  </div>
+</div>
+
   );
 };
 
-export default ShopPage;
+export default Foryoucomp;

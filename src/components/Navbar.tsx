@@ -1,62 +1,129 @@
 "use client";
-import Image from 'next/image';
-import React from 'react';
+import { useState } from "react";
+import Image from "next/image";
+import React from "react";
+import { IoSearch } from "react-icons/io5";
 import logo from "../../public/logo.png";
-import { IoIosArrowDown } from "react-icons/io";
-import Link from 'next/link';
+import Link from "next/link";
+import { Menu } from "lucide-react";
+import { FaRegHeart } from "react-icons/fa";
+import { IoBagOutline } from "react-icons/io5";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+// ✅ Just use 'products' directly
+import products from "../../Data/data";
 
 const Navbar = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+ const filteredProducts = products.filter((product: any) =>
+  typeof product?.title === 'string' &&
+  product.title.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+
   return (
-    <div className="w-full bg-white px-6 flex justify-between items-center border-b border-gray-200 h-20 shadow-sm">
-      {/* Logo */}
-      <div className="flex items-center w-28 h-16 relative">
-        <Image 
-          src={logo} 
-          alt="Logo"
-          layout="fill"
-          objectFit="contain"
-          priority
-        />
-      </div>
+    <div className="w-full bg-white border-b overflow-hidden border-gray-200 shadow-sm relative">
+      <div className="px-6 flex justify-between items-center h-20">
+        {/* Logo */}
+        <div className="flex  items-center w-28 h-16 relative">
+          <Image
+            src={logo}
+            alt="Logo"
+            layout="fill"
+            objectFit="contain"
+            priority
+          />
+        </div>
 
-      {/* Center Nav */}
-      <div className="hidden md:flex space-x-6 items-center text-[14px] font-medium">
+        {/* Desktop Nav */}
+        <div className="hidden md:flex space-x-24 items-center text-[14px] font-medium">
+          {/* {["HOME", "SHOP"].map((item, idx) => (
+            <a
+              key={idx}
+              href="/"
+              className="text-gray-700 hover:text-[#008EAA] transition-colors"
+            >
+              {item}
+            </a>
+          ))} */}
+          <ul className="hidden md:flex space-x-24 items-center text-[14px] font-medium">
+           <Link href={"/"}><li className="text-gray-700 hover:text-[#008EAA] transition-colors">Home</li></Link> 
+           <Link href={"shop"}> <li className="text-gray-700 hover:text-[#008EAA] transition-colors">Shop</li></Link>
+          </ul>
+        </div>
 
-        {["HOME", "SHOP", "PRODUCTS"].map((item, idx) => (
-          <React.Fragment key={idx}>
-            <a href="#" className="text-gray-700 hover:text-[#008EAA] transition-colors">{item}</a>
-            {idx < 4 && <IoIosArrowDown className="text-gray-400 text-xs" />}
-          </React.Fragment>
-        ))}
+        {/* Search */}
+        <div className="relative">
+          <div className="flex items-center gap-[10px] lg:mr-0 mr-5 px-[15px] py-[5px] border border-bordercoloryello rounded-2xl">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={handleSearch}
+              className="bg-transparent outline-none text-black text-[14px] placeholder:text-gray-400 w-full"
+            />
+            <IoSearch className="text-gray-600 w-[20px] h-[20px]" />
+          </div>
 
-        <Link href="/" className="text-gray-700 hover:text-[#008EAA] transition-colors">HOME</Link>
-       
+          {searchQuery && filteredProducts.length > 0 && (
+            <div className="absolute bg-white w-full mt-1 border border-gray-300 rounded-md shadow-lg z-10">
+              <ul>
+                {filteredProducts.map((product:any) => (
+                  <li
+                    key={product._id}
+                    className="px-4 py-2 text-black hover:bg-gray-100 cursor-pointer"
+                  >
+                    <Link href={`/shop/${product._id}`}>{product.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
 
-        <Link href="/shop" className="text-gray-700 hover:text-[#008EAA] transition-colors">SHOP</Link>
+        {/* Icons */}
+        <div className="flex items-center space-x-4 md:space-x-6">
+         <div className="lg:block hidden">
+           <div className="flex items-center space-x-4 ">
+            <Link href={"/wishlist"}>
+            <FaRegHeart className="w-5 h-5 text-gray-700 hover:text-[#E52E71]" />
+          </Link>
+          <Link href={"/cart"}>
+            <IoBagOutline className="w-5 h-5 text-gray-700 hover:text-[#E52E71]" />
+          </Link>
+           </div>
+         </div>
 
-      </div>
+          
+        </div>
 
-      {/* Icons */}
-      <div className="flex items-center space-x-4">
-        <Link href={"/wishlist"}>
-       <button className="text-gray-700 hover:text-[#E52E71] transition-colors">
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M4.318 6.318a4.5 4.5 0 010 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-    />
-  </svg>
-</button>
-</Link>
-        <Link href={"/cart"}>
-        <button className="text-gray-700 hover:text-[#E52E71] transition-colors">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-        </button>
-        </Link>
+        <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <button>
+                  <Menu className="w-6 h-6 text-gray-700" />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[250px] sm:w-[300px]">
+                <div className="flex flex-col gap-4 mt-8">
+                  <Link href="/">HOME</Link>
+                  <Link href="/shop">SHOP</Link>
+                  <Link href="/products">PRODUCTS</Link>
+                  <Link href="/wishlist">WISHLIST</Link>
+                  <Link href="/cart">CART</Link>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
       </div>
     </div>
   );
