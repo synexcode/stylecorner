@@ -12,7 +12,7 @@ type CartItem = {
 const AddToCartButton = ({ product }: { product: CartItem }) => {
   const handleAddToCart = () => {
     const stored = localStorage.getItem("cartItems");
-    let cartItems: CartItem[] = stored ? JSON.parse(stored) : [];
+    const cartItems: CartItem[] = stored ? JSON.parse(stored) : [];
 
     const existingIndex = cartItems.findIndex((item) => item.id === product.id);
 
