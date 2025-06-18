@@ -1,6 +1,8 @@
 "use client";
-import { FaRegHeart } from "react-icons/fa";
-import React from "react";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 type WishlistItem = {
   id: number;
@@ -10,23 +12,57 @@ type WishlistItem = {
 };
 
 const AddToWishlistButton = ({ product }: { product: WishlistItem }) => {
-  const handleAddToWishlist = () => {
-    const existing = localStorage.getItem("wishlist");
-    const wishlist = existing ? JSON.parse(existing) : [];
+  const [isInWishlist, setIsInWishlist] = useState(false);
 
-    const exists = wishlist.find((item: WishlistItem) => item.id === product.id);
-    if (!exists) {
+  useEffect(() => {
+    const existing = localStorage.getItem("wishlist");
+    const wishlist: WishlistItem[] = existing ? JSON.parse(existing) : [];
+    const exists = wishlist.find((item) => item.id === product.id);
+    setIsInWishlist(!!exists);
+  }, [product.id]);
+
+  const handleToggleWishlist = () => {
+    const existing = localStorage.getItem("wishlist");
+    let wishlist: WishlistItem[] = existing ? JSON.parse(existing) : [];
+
+    const index = wishlist.findIndex((item) => item.id === product.id);
+
+    if (index !== -1) {
+      // Remove from wishlist
+      wishlist.splice(index, 1);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      setIsInWishlist(false);
+      toast.error("❤ Item Remove to wishlist!", {
+              position: "top-right",
+              autoClose: 2500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
+    } else {
+      // Add to wishlist
       wishlist.push(product);
       localStorage.setItem("wishlist", JSON.stringify(wishlist));
-      alert("Added to wishlist ❤️");
-    } else {
-      alert("Already in wishlist!");
+      setIsInWishlist(true);
+      toast.success("❤ Item Add to wishlist!", {
+              position: "top-right",
+              autoClose: 2500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
     }
   };
 
   return (
-    <button onClick={handleAddToWishlist}>
-      <FaRegHeart className="text-[20px] text-pink-500 hover:scale-110 transition" />
+    <button onClick={handleToggleWishlist}>
+      {isInWishlist ? (
+        <FaHeart className="text-[20px] text-red-500 hover:scale-110 transition" />
+      ) : (
+        <FaRegHeart className="text-[20px] text-pink-500 hover:scale-110 transition" />
+      )}
     </button>
   );
 };

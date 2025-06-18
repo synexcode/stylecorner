@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const images = ["/hero1.png", "/hero2.png", "/hero3.png"];
@@ -14,11 +15,11 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative bg-white w-full h-screen overflow-hidden">
+<div className="relative bg-white z-0 w-full h-screen overflow-hidden">
       {images.map((img, idx) => (
         <div
           key={idx}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+          className={`absolute z-0  inset-0 bg-cover bg-center transition-opacity duration-1000 ${
             idx === currentIndex ? "opacity-100" : "opacity-0"
           }`}
           style={{
@@ -28,7 +29,7 @@ const Hero = () => {
         />
       ))}
 
-      <div className="absolute inset-0 bg-white opacity-10 z-10" />
+      <div className="absolute inset-0 bg-white opacity-10 z-0" />
 
       <style jsx>{`
         @keyframes fadeSlideIn {
@@ -59,9 +60,11 @@ const Hero = () => {
           <h2 className="text-6xl font-bold mb-4 italic drop-shadow-md">
             Elegance, <span className="text-[#E52E71]">Redefined</span>
           </h2>
+          <Link href="/shop">
           <button className="px-8 py-4 border border-white hover:bg-[#008EAA] hover:border-[#008EAA] text-[18px] hover:text-white transition duration-300">
             NEW ARRIVALS →
           </button>
+          </Link>
         </div>
       </div>
 

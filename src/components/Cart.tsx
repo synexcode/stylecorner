@@ -14,7 +14,7 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
-    const stored = localStorage.getItem("cartItems");
+    const stored = localStorage.getItem("cart");
     if (stored) {
       setCartItems(JSON.parse(stored));
     }
@@ -22,7 +22,7 @@ const Cart = () => {
 
   const updateCart = (items: CartItem[]) => {
     setCartItems(items);
-    localStorage.setItem("cartItems", JSON.stringify(items));
+    localStorage.setItem("cart", JSON.stringify(items));
   };
 
   const removeItem = (id: number) => {

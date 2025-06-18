@@ -1,4 +1,7 @@
+import Link from "next/link";
 import React from "react";
+import { FaFacebookSquare } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -18,9 +21,9 @@ const Footer = () => {
                 Categories
               </h2>
               <nav className="list-none mb-10 space-y-2">
-                <li><a className="hover:text-[#E52E71] cursor-pointer">Men</a></li>
-                <li><a className="hover:text-[#E52E71] cursor-pointer">Women</a></li>
-                <li><a className="hover:text-[#E52E71] cursor-pointer">Kids</a></li>
+                <li><a className="hover:text-[#E52E71] cursor-pointer">Shop</a></li>
+                <li><a className="hover:text-[#E52E71] cursor-pointer">Services</a></li>
+                <Link href={"/policy"}><li><p className="hover:text-[#E52E71] cursor-pointer">Policies</p></li></Link>
                 <li><a className="hover:text-[#E52E71] cursor-pointer">Accessories</a></li>
               </nav>
             </div>
@@ -28,13 +31,20 @@ const Footer = () => {
             {/* Support */}
             <div className="lg:w-1/4 md:w-1/2 w-full px-4">
               <h2 className="title-font font-medium text-[#008EAA] tracking-widest text-sm mb-3">
-                Support
+                Contact
               </h2>
               <nav className="list-none mb-10 space-y-2">
-                <li><a className="hover:text-[#E52E71] cursor-pointer">Contact Us</a></li>
-                <li><a className="hover:text-[#E52E71] cursor-pointer">FAQs</a></li>
-                <li><a className="hover:text-[#E52E71] cursor-pointer">Return Policy</a></li>
-                <li><a className="hover:text-[#E52E71] cursor-pointer">Shipping Info</a></li>
+                <li><a className="hover:text-[#E52E71] cursor-pointer">Email: ... </a></li>
+                <li><a className="hover:text-[#E52E71] cursor-pointer">Phone: ...</a></li>
+                <li><a className="hover:text-[#E52E71] cursor-pointer">Karachi , Pakistan</a></li>
+                 <div className="flex items-center space-x-4 ">
+         <Link href="https://wa.me/c/923432545108"><FaWhatsapp className="w-5 h-5 text-green-500 "/></Link> 
+          {/* <FaInstagram className="w-5 h-5 bg-clip-text bg-gradient-to-t from-yellow-400 via-pink-500 to-purple-600 "/> */}
+          <span className=" text-white  bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-600">
+  <FaInstagram className="w-5 h-5" />
+</span>
+          <FaFacebookSquare className="w-5 h-5 text-blue-600 "/>
+           </div>
               </nav>
             </div>
 

@@ -11,7 +11,7 @@ import products from "../../../Data/data";
 const Foryoucomp = () => {
 
   return (
-<div className="mb-20 mt-[50px] px-4 overflow-hidden">
+<div className=" lg:mt-[60px] mt-[20px] mb-[30px]  lg:mb-[100px] px-4 overflow-hidden">
   {/* Heading */}
   <div className="text-center mb-8">
     <h2 className="text-3xl sm:text-4xl font-bold text-[#008EAA] font-[Pacifico]">
@@ -78,7 +78,7 @@ const Foryoucomp = () => {
               />
             <Button className="group flex items-center gap-1 cursor-pointer text-styleWhite bg-stylePink hover:bg-styleBlue text-[14px] border-styleBlue duration-300">
               <IoIosCheckmarkCircle className="text-xl group-hover:animate-bounce text-styleWhite" />
-              <Link href="/payment">Buy now</Link>
+              <Link href="/checkout">Buy now</Link>
             </Button>
           </div>
         </div>

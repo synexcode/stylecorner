@@ -9,6 +9,7 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		
   		colors: {
 			  styleBlue: "#008EAA",         // Main blue (peacock body)
       	stylePink: "#E52E71",         // Bright pink (Corner text)
