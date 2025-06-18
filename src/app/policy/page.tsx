@@ -44,7 +44,7 @@ We accept secure payments through bank transfers, JazzCash, EasyPaisa, and other
 methods on our checkout page.
 Refunds are only issued:
 - If we cancel your order due to unavailability or stock issues
-- If a product is unavailable and you've already paid
+- If a product is unavailable and you ve already paid
 - If a damaged or incorrect product cannot be exchanged
 Refunds will be processed within 7-10 business days to your original payment method.
 For any concerns, please contact us via WhatsApp or email before submitting a refund request.      </p>

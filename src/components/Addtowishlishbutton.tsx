@@ -1,7 +1,7 @@
 "use client";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 
 
 type WishlistItem = {
@@ -23,7 +23,7 @@ const AddToWishlistButton = ({ product }: { product: WishlistItem }) => {
 
   const handleToggleWishlist = () => {
     const existing = localStorage.getItem("wishlist");
-    let wishlist: WishlistItem[] = existing ? JSON.parse(existing) : [];
+    const wishlist: WishlistItem[] = existing ? JSON.parse(existing) : [];
 
     const index = wishlist.findIndex((item) => item.id === product.id);
 
