@@ -29,7 +29,7 @@ const Foryoucomp = () => {
           key={item.id}
           className="w-full sm:w-[55%] lg:w-[23%] bg-white"
         >
-          <Link href={item.detailLink}>
+          <Link href={`/shop/${item.slug}`} key={item.id}>
             <div className="block relative h-48 rounded overflow-hidden hover:scale-110 hover:duration-500">
               <Image
                 src={item.img}
